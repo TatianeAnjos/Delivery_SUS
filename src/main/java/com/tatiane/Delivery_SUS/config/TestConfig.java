@@ -9,12 +9,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.tatiane.Delivery_SUS.entities.Category;
+import com.tatiane.Delivery_SUS.entities.Endereco;
 import com.tatiane.Delivery_SUS.entities.Order;
 import com.tatiane.Delivery_SUS.entities.OrderItem;
 import com.tatiane.Delivery_SUS.entities.Product;
 import com.tatiane.Delivery_SUS.entities.User;
 import com.tatiane.Delivery_SUS.entities.enums.OrderStatus;
 import com.tatiane.Delivery_SUS.repositories.CategoryRepository;
+import com.tatiane.Delivery_SUS.repositories.EnderecoRepository;
 import com.tatiane.Delivery_SUS.repositories.OrderItemRepository;
 import com.tatiane.Delivery_SUS.repositories.OrderRepository;
 import com.tatiane.Delivery_SUS.repositories.ProductRepository;
@@ -38,6 +40,9 @@ public class TestConfig implements CommandLineRunner{
 	
 	@Autowired
 	private OrderItemRepository orderItemRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -63,8 +68,16 @@ public class TestConfig implements CommandLineRunner{
 		Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, u2); 
 		Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT,u1);
 		
+		Endereco e1 = new Endereco(null, "Rua flores", "300", "São Paulo", "Jardim", u1);
+		Endereco e2 = new Endereco(null, "Avenida Matos", "105","São Paulo", "Flores", u2);
+
+
+		u1.getEnderecos().add(e1);
+		u2.getEnderecos().add(e2);
+		
 		categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3,cat4));
 		productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5,p6,p7,p8));
+		
 		
 		p1.getCategories().add(cat1);
 		p2.getCategories().add(cat1);
@@ -76,10 +89,11 @@ public class TestConfig implements CommandLineRunner{
 		p8.getCategories().add(cat4);
 		
 		productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5,p6,p7,p8));
-		
+
 		userRepository.saveAll(Arrays.asList(u1,u2));
 		orderRepository.saveAll(Arrays.asList(o1,o2,o3));
 		
+		enderecoRepository.saveAll(Arrays.asList(e1,e2));
 		
 		OrderItem oi1 = new OrderItem(o1, p1, 2); 
 		OrderItem oi2 = new OrderItem(o1, p3, 1); 
@@ -89,13 +103,6 @@ public class TestConfig implements CommandLineRunner{
 		orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 				
 		orderRepository.save(o1);
-		
-		/**ATIVIDADES RESTANTES**/
-		/*Primeiro - Verificar uma forma de tirar os atributos de preços, modificando para a forma de medicamentos gratuitos*/
-		/*COMMITAR*/
-		/*Fazer a classe para pagamento da taxa*/
-		/*Criar as demais opeções do CRUD além de busca*/
-		/*Verificar as demais coisas a serem implementadas - além da classe do entregador e endereco*/
 		
 	}
 }	

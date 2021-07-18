@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,10 @@ public class User implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	public List<Order> orders = new ArrayList<Order>();
-	
+
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	private List<Endereco> enderecos = new ArrayList<>();
+
 	public User(){
 		
 	}
@@ -86,6 +90,18 @@ public class User implements Serializable{
 
 	public List<Order> getOrders() {
 		return orders;
+	}
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 
 	@Override
