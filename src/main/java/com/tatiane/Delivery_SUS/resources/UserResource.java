@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.tatiane.Delivery_SUS.entities.User;
+import com.tatiane.Delivery_SUS.entities.Dto.UserDto;
+import com.tatiane.Delivery_SUS.entities.Mapper.UserMapper;
 import com.tatiane.Delivery_SUS.services.UserService;
 
 @RestController
@@ -36,11 +38,11 @@ public class UserResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<User> insert(@RequestBody User obj){
-		obj = service.insert(obj);
+	public ResponseEntity<User> insert(@RequestBody UserDto obj){
+		User user = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/id")
-				.buildAndExpand(obj.getId()).toUri();
+				.buildAndExpand(user.getId()).toUri();
 		
-		return ResponseEntity.created(uri).body(obj);
+		return ResponseEntity.created(uri).body(user);
 	}
 }
