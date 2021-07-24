@@ -62,5 +62,11 @@ public class OrderService {
 		List<ResumoPedidoDto> orders = mapper.mapear(repository.findByStatus(status));
 		return orders;
 	}
+	
+	public ResumoPedidoDto atualizarStatus(Integer status, Long id) {
+		Order order = findById(id);
+		order.setOrderStatus(OrderStatus.valueOf(status));		
+		return mapper.mapear(repository.save(order));
+	}
 
 }
