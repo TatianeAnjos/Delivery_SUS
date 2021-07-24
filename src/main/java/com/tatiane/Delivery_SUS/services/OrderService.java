@@ -12,10 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tatiane.Delivery_SUS.entities.Order;
 import com.tatiane.Delivery_SUS.entities.OrderItem;
+import com.tatiane.Delivery_SUS.entities.Dto.ResumoPedidoDto;
+import com.tatiane.Delivery_SUS.entities.Mapper.OrderMapper;
 import com.tatiane.Delivery_SUS.entities.enums.OrderStatus;
 import com.tatiane.Delivery_SUS.repositories.OrderItemRepository;
 import com.tatiane.Delivery_SUS.repositories.OrderRepository;
-import com.tatiane.Delivery_SUS.repositories.ProductRepository;
 
 @Service
 public class OrderService {
@@ -28,8 +29,12 @@ public class OrderService {
 	
 	@Autowired
 	private OrderItemRepository orderItemRepository;
+	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private OrderMapper mapper;
 	
 	public List<Order> findAll(){
 		return repository.findAll();
@@ -51,6 +56,11 @@ public class OrderService {
 		}
 		orderItemRepository.saveAll(obj.getItems());
 		return obj;
+	}
+	
+	public List<ResumoPedidoDto> findByStatus(Integer status) {
+		List<ResumoPedidoDto> orders = mapper.mapear(repository.findByStatus(status));
+		return orders;
 	}
 
 }
