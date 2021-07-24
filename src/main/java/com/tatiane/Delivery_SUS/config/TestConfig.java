@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.tatiane.Delivery_SUS.entities.Category;
 import com.tatiane.Delivery_SUS.entities.Endereco;
+import com.tatiane.Delivery_SUS.entities.Entregador;
 import com.tatiane.Delivery_SUS.entities.Order;
 import com.tatiane.Delivery_SUS.entities.OrderItem;
 import com.tatiane.Delivery_SUS.entities.Product;
@@ -17,6 +18,7 @@ import com.tatiane.Delivery_SUS.entities.User;
 import com.tatiane.Delivery_SUS.entities.enums.OrderStatus;
 import com.tatiane.Delivery_SUS.repositories.CategoryRepository;
 import com.tatiane.Delivery_SUS.repositories.EnderecoRepository;
+import com.tatiane.Delivery_SUS.repositories.EntregadorRepository;
 import com.tatiane.Delivery_SUS.repositories.OrderItemRepository;
 import com.tatiane.Delivery_SUS.repositories.OrderRepository;
 import com.tatiane.Delivery_SUS.repositories.ProductRepository;
@@ -43,7 +45,10 @@ public class TestConfig implements CommandLineRunner{
 	
 	@Autowired
 	private EnderecoRepository enderecoRepository;
-	
+
+	@Autowired
+	private EntregadorRepository entregadorRepository;
+
 	@Override
 	public void run(String... args) throws Exception {
 		
@@ -103,6 +108,10 @@ public class TestConfig implements CommandLineRunner{
 		orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 				
 		orderRepository.save(o1);
+		
+		Entregador en1 = new Entregador(null, "Bruno Alves", "bruno@gmail.com", "987989865", "123456");
+
+		entregadorRepository.save(en1);
 		
 	}
 }	
