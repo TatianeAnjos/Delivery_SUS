@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.tatiane.Delivery_SUS.entities.Order;
+import com.tatiane.Delivery_SUS.entities.Dto.DadosBuscaEnderecoDto;
 import com.tatiane.Delivery_SUS.entities.Dto.ResumoPedidoDto;
+import com.tatiane.Delivery_SUS.services.MapsService;
 import com.tatiane.Delivery_SUS.services.OrderService;
 
 @RestController
@@ -53,10 +55,17 @@ public class OrderResource {
 		List<ResumoPedidoDto> obj = service.findByStatus(status);
 		return ResponseEntity.ok().body(obj);
 	}
+	
 	@PutMapping("/atualizar-status")
 	public ResponseEntity<ResumoPedidoDto> atualizarStatus(@RequestParam Integer status,@RequestParam Long id){
 		ResumoPedidoDto dto = service.atualizarStatus(status,id);
 		return ResponseEntity.ok().body(dto);
+	}
+	
+	@RequestMapping(method= RequestMethod.GET,value = "/calcular-taxa-entrega")
+	public ResponseEntity <String> calcularTaxaEntrega(@RequestParam Long id,@RequestParam String token){
+		String valorTaxa = service.CalcularTaxaEntrega(id,token);
+		return ResponseEntity.ok().body(valorTaxa);
 	}
 
 }

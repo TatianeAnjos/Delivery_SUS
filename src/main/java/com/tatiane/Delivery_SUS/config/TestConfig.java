@@ -73,8 +73,8 @@ public class TestConfig implements CommandLineRunner{
 		Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, u2); 
 		Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT,u1);
 		
-		Endereco e1 = new Endereco(null, "Rua flores", "300", "São Paulo", "Jardim", u1);
-		Endereco e2 = new Endereco(null, "Avenida Matos", "105","São Paulo", "Flores", u2);
+		Endereco e1 = new Endereco(null, "Rua Pirituba", "300", "São Paulo", "SP", "Vila da Saude", u1);
+		Endereco e2 = new Endereco(null, "Rua Jose de Camargo", "105","São Paulo", "SP","Chacara Inglesa", u2);
 
 
 		u1.getEnderecos().add(e1);

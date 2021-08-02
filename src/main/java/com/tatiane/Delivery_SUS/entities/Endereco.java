@@ -23,6 +23,7 @@ public class Endereco implements Serializable {
 	private String logradouro;
 	private String numero;
 	private String cidade; // verificar a possibilidade de melhoria
+	private String estado;// verificar a possibilidade de melhoria
 	private String bairro;
 
 	@JsonIgnore
@@ -34,12 +35,13 @@ public class Endereco implements Serializable {
 
 	}
 
-	public Endereco(Long id, String logradouro, String numero, String cidade, String bairro, User cliente) {
+	public Endereco(Long id, String logradouro, String numero, String cidade, String estado, String bairro, User cliente) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.cidade = cidade;
+		this.estado = estado;
 		this.bairro = bairro;
 		this.cliente = cliente;
 	}
@@ -116,5 +118,14 @@ public class Endereco implements Serializable {
 	public void setCliente(User cliente) {
 		this.cliente = cliente;
 	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
 
 }
