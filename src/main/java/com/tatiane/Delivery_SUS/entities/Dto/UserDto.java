@@ -19,6 +19,8 @@ public class UserDto {
 	private String cidade;
 	@NotNull
 	private String bairro;
+	@NotNull
+	private String estado;
 
 
 
@@ -85,5 +87,14 @@ public class UserDto {
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
 
 }

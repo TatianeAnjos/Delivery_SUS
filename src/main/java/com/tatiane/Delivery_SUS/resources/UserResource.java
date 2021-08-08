@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.tatiane.Delivery_SUS.entities.User;
 import com.tatiane.Delivery_SUS.entities.Dto.UserDto;
-import com.tatiane.Delivery_SUS.entities.Mapper.UserMapper;
+import com.tatiane.Delivery_SUS.entities.Dto.UserResumoDto;
 import com.tatiane.Delivery_SUS.services.UserService;
 
 @RestController
@@ -26,20 +25,20 @@ public class UserResource {
 	private UserService service;
 	
 	@GetMapping
-	public ResponseEntity<List<User>> findAll(){
+	public ResponseEntity<List<UserResumoDto>> findAll(){
 		
-		List<User> listUsers = service.findAll();
+		List<UserResumoDto> listUsers = service.findAll();
 		return ResponseEntity.ok().body(listUsers);
 	}
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<User>findById(@PathVariable Long id){
-		User obj = service.findById(id);
+	public ResponseEntity<UserResumoDto>findById(@PathVariable Long id){
+		UserResumoDto obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@PostMapping
-	public ResponseEntity<User> insert(@RequestBody UserDto obj){
-		User user = service.insert(obj);
+	public ResponseEntity<UserResumoDto> insert(@RequestBody UserDto obj){
+		UserResumoDto user = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/id")
 				.buildAndExpand(user.getId()).toUri();
 		

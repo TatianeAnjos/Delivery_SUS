@@ -33,11 +33,10 @@ public class ProductResource {
 		Product obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
-//	@RequestMapping(value = "/findByName/{name}")
-	@RequestMapping(value="/findByName",method=RequestMethod.GET)
-	public ResponseEntity<List<Product>>findByName(
-			@RequestParam(value="name", defaultValue="") String name){
-		List<Product> obj = service.findByName(name);
+
+	@RequestMapping(value="/buscarPorNome",method=RequestMethod.GET)
+	public ResponseEntity<List<Product>>findByName(@RequestParam String name){
+		List<Product> obj = service.buscarPorNome(name);
 		return ResponseEntity.ok().body(obj);
 	}
 

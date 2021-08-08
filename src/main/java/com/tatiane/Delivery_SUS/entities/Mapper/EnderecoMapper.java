@@ -15,9 +15,10 @@ public class EnderecoMapper {
 		endereco.setCidade(obj.getCidade());
 		endereco.setLogradouro(obj.getLogradouro());
 		endereco.setNumero(obj.getNumero());
+		endereco.setEstado(obj.getEstado());
 		endereco.setCliente(cliente);
 		return endereco;
 	}
 	
-
+	
 }

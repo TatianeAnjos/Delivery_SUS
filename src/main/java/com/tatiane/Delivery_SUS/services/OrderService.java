@@ -20,6 +20,7 @@ import com.tatiane.Delivery_SUS.entities.Mapper.OrderMapper;
 import com.tatiane.Delivery_SUS.entities.enums.OrderStatus;
 import com.tatiane.Delivery_SUS.repositories.OrderItemRepository;
 import com.tatiane.Delivery_SUS.repositories.OrderRepository;
+import com.tatiane.Delivery_SUS.repositories.UserRepository;
 
 @Service
 public class OrderService {
@@ -34,14 +35,13 @@ public class OrderService {
 	private OrderItemRepository orderItemRepository;
 	
 	@Autowired
-	private UserService userService;
-	
-	@Autowired
 	private OrderMapper mapper;
 	
 	@Autowired
 	private MapsService mapsService;
 	
+	@Autowired 
+	private UserRepository userRepo;
 	
 	public List<Order> findAll(){
 		return repository.findAll();
@@ -54,7 +54,7 @@ public class OrderService {
 	public Order insert(@Valid Order obj) {
 		obj.setMoment(Instant.now());
 		obj.setOrderStatus(OrderStatus.WAITING_PAYMENT);
-		obj.setClient(userService.findById(obj.getClient().getId()));
+		obj.setClient(userRepo.findById(obj.getClient().getId()).orElseThrow());
 		repository.save(obj);
 		for (OrderItem item : obj.getItems()) {
 			item.setProduct(productService.findById(item.getProduct().getId()));
