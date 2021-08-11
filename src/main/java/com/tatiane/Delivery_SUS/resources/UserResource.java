@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.tatiane.Delivery_SUS.entities.Dto.UserDto;
 import com.tatiane.Delivery_SUS.entities.Dto.UserResumoDto;
+import com.tatiane.Delivery_SUS.entities.Dto.VerificarLoginDto;
 import com.tatiane.Delivery_SUS.services.UserService;
 
 @RestController
@@ -43,5 +45,11 @@ public class UserResource {
 				.buildAndExpand(user.getId()).toUri();
 		
 		return ResponseEntity.created(uri).body(user);
+	}
+	
+	@GetMapping(value = "/verificarLogin")
+	public ResponseEntity<VerificarLoginDto> verificarLogin(@RequestParam String email, @RequestParam String senha){
+		VerificarLoginDto dto = service.verificarLogin(email,senha);
+		return ResponseEntity.ok().body(dto);
 	}
 }
