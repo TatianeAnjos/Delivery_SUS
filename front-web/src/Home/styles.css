@@ -1,6 +1,6 @@
 .home-container {
   padding-top: 100px;
-  height: calc(100vh - 254px);
+  height: calc(100vh - 217px);
 }
 
 .home-container h1 {
@@ -19,6 +19,7 @@
   letter-spacing: -0.015em;
   color: var(--dark-color);
   margin-bottom: 40px !important;
+  margin-top: 59px !important;
 }
 
 .home-subtitle {
