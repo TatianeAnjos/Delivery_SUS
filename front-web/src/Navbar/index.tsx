@@ -1,5 +1,4 @@
 import './styles.css';
-import { ReactComponent as Logo}  from './Logo.svg';
 import { Link } from 'react-router-dom';
 
 

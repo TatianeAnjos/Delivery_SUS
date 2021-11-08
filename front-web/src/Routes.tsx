@@ -1,7 +1,7 @@
 import { BrowserRouter, Switch, Route }  from "react-router-dom";
 import Home from "./Home";
 import Navbar from "./Navbar";
-import Orders from "./Orders";    
+import Orders from "./Orders"; 
 
 function Routes (){
     return(
@@ -13,6 +13,12 @@ function Routes (){
                 </Route>
                 <Route path="/">
                     <Home />
+                </Route>
+                <Route path="/cadastrocliente">
+                    
+                </Route>
+                <Route path="/teste">
+                   
                 </Route>
             </Switch>
         </BrowserRouter>
