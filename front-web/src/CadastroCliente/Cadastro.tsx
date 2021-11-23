@@ -112,7 +112,7 @@ function Cadastro() {
               type="password"
               className="form-control"
               id="inputPassword4"
-              placeholder="Senha"
+              placeholder="Senha."
             />
           </div>
         </div>

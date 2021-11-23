@@ -6,6 +6,7 @@ function CadastroEntrega() {
       <CadastroEntregador />
     </div>
   );
+  /// componente entregador
 }
 
 export default CadastroEntrega;
