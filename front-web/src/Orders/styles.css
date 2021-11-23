@@ -26,10 +26,12 @@
   letter-spacing: -0.015em;
   color: var(--primary-color);
   margin-right: 100px;
+  margin-bottom: 10px;
 }
 
 .steps-items {
   list-style-type: none;
+  margin-top: 50px;
 }
 
 .steps-items li {

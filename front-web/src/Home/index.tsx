@@ -17,10 +17,10 @@ function Home() {
             <Link to="/orders"className="home-btn-order">
               Entrar <br />
             </Link>
-            <Link to="/teste"className="home-btn-delivery">
+            <Link to="/cadastroEntregador"className="home-btn-delivery">
               Entregador entre aqui <br />
             </Link>
-            <Link to="/cadastrocliente"className="home-btn-cadastro">
+            <Link to="/cadastroCliente"className="home-btn-cadastro">
               Realizar Cadastro <br />
             </Link>
           </div>
