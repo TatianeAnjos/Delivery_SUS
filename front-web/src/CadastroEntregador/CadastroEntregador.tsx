@@ -18,111 +18,93 @@ function CadastroEntregador() {
           crossOrigin="anonymous"
         />
       </head>
-      <h1>Novo Usuário</h1>
+      <h1>Entregas Pendentes</h1>
+
+      <table className="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Ordem</th>
+            <th scope="col">Numero do Pedido</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>124578</td>
+            <td>Carlos</td>
+            <td>R$ 10,25</td>
+            <td>Em andamento </td>
+            <button type="submit" className="btn btn-primary">
+              Selecionar Pedido
+            </button>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>235689</td>
+            <td>Maria</td>
+            <td>R$ 15,00</td>
+            <td>Pedente</td>
+            <button type="submit" className="btn btn-primary">
+              Selecionar Pedido
+            </button>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>748596</td>
+            <td>José</td>
+            <td>R$ 25,30</td>
+            <td>Pendente</td>
+            <button type="submit" className="btn btn-primary">
+              Selecionar Pedido
+            </button>
+          </tr>
+        </tbody>
+      </table>
+
       <form className="form-CadCliente">
         <div className="form-row">
           <div className="form-group col-md-6">
-            <label htmlFor="inputNome">Nome</label>
+            <label htmlFor="Pedido">Pedido</label>
             <input
               type="text"
               className="form-control"
-              id="inputNome"
-              placeholder="Nome"
+              id="Pedido"
+              placeholder="Pedido"
+              value="124578"
+              disabled
             />
           </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="inputSobrenome">Sobrenome</label>
+          <div className="form-group col-md-6">
+            <label htmlFor="inputSobrenome">Endereço</label>
             <input
               type="text"
               className="form-control"
               id="inputSobrenome"
-              placeholder="Sobrenome"
+              placeholder="Endereço"
+              value="Brigadeiro Faria Lima, 1744"
+              disabled
             />
           </div>
-          <div className="form-group col-md-2">
-            <label htmlFor="inputNome">CPF</label>
+          <div className="form-group col-md-6">
+            <label htmlFor="inputNome">Valor</label>
             <input
               type="text"
               className="form-control"
               id="inputNome"
-              placeholder="CPF"
+              placeholder="Valor"
+              value="R$ 10,25"
+              disabled
             />
           </div>
-        </div>
-
-        <div className="form-row">
-          <div className="form-group col-md-6">
-            <label htmlFor="endereco">Endereço</label>
-            <input
-              type="text"
-              className="form-control"
-              id="endereco"
-              placeholder="Rua, Avenida, Travessa..."
-            />
-          </div>
-          <div className="form-group col-md-2">
-            <label htmlFor="numero">Numero</label>
-            <input
-              type="text"
-              className="form-control"
-              id="numero"
-              placeholder="N°"
-            />
-          </div>
-          <div className="form-group col-md-">
-            <label htmlFor="complemento">Complemento</label>
-            <input
-              type="text"
-              className="form-control"
-              id="complemento"
-              placeholder="Complemento"
-            />
-          </div>
-        </div>
-
-        <div className="form-row">
-          <div className="form-group col-md-6">
-            <label htmlFor="inputCity">Cidade</label>
-            <input type="text" className="form-control" id="inputCity" />
-          </div>
-          <div className="form-group col-md-4">
-            <label htmlFor="inputEstado">Estado</label>
-            <select id="inputEstado" className="form-control">
-              <option selected>Escolher...</option>
-              <option>...</option>
-            </select>
-          </div>
-          <div className="form-group col-md-2">
-            <label htmlFor="inputCEP">CEP</label>
-            <input type="text" className="form-control" id="inputCEP" />
-          </div>
-        </div>
-        <div className="form-row">
-          <div className="form-group col-md-6">
-            <label htmlFor="inputEmail4">Email</label>
-            <input
-              type="email"
-              className="form-control"
-              id="inputEmail4"
-              placeholder="Email"
-            />
-          </div>
-          <div className="form-group col-md-6">
-            <label htmlFor="inputPassword4">Senha</label>
-            <input
-              type="password"
-              className="form-control"
-              id="inputPassword4"
-              placeholder="Senha"
-            />
-          </div>
-        </div>
-
-        <div className="form-group">
-          <div className="form-check"></div>
         </div>
         <button type="submit" className="btn btn-primary">
-          Cadastrar
+          Iniciar entrega
+        </button>
+        <button type="submit" className="btn btn-primary">
+          Finalizar Pedido
         </button>
       </form>
 
