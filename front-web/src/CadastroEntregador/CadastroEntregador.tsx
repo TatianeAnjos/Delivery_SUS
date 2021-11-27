@@ -1,4 +1,3 @@
-import Footer from "../Footer";
 import "./style.css";
 <link
   rel="stylesheet"
@@ -28,6 +27,7 @@ function CadastroEntregador() {
             <th scope="col">Nome</th>
             <th scope="col">Valor</th>
             <th scope="col">Status</th>
+            <th scope="col">Selecionar Pedido</th>
           </tr>
         </thead>
         <tbody>
@@ -37,7 +37,7 @@ function CadastroEntregador() {
             <td>Carlos</td>
             <td>R$ 10,25</td>
             <td>Em andamento </td>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary" id="pedido">
               Selecionar Pedido
             </button>
           </tr>
@@ -47,7 +47,7 @@ function CadastroEntregador() {
             <td>Maria</td>
             <td>R$ 15,00</td>
             <td>Pedente</td>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary" id="pedido">
               Selecionar Pedido
             </button>
           </tr>
@@ -57,14 +57,14 @@ function CadastroEntregador() {
             <td>José</td>
             <td>R$ 25,30</td>
             <td>Pendente</td>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary" id="pedido">
               Selecionar Pedido
             </button>
           </tr>
         </tbody>
       </table>
 
-      <form className="form-CadCliente">
+      <form className="form-PedidosPendentes">
         <div className="form-row">
           <div className="form-group col-md-6">
             <label htmlFor="Pedido">Pedido</label>
@@ -103,7 +103,7 @@ function CadastroEntregador() {
         <button type="submit" className="btn btn-primary">
           Iniciar entrega
         </button>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn-send">
           Finalizar Pedido
         </button>
       </form>
