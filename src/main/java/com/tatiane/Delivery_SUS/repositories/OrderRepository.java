@@ -10,7 +10,7 @@ import com.tatiane.Delivery_SUS.entities.Order;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-	@Query(value = "select * from TB_ORDER where ORDER_STATUS = ?", nativeQuery = true)
+	@Query(value = "select * from TB_ORDER where ORDER_STATUS = ? ORDER BY ID ASC", nativeQuery = true)
 	List<Order> findByStatus(Integer status);
 
 }

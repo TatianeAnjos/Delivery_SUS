@@ -43,8 +43,10 @@ public class OrderService {
 	@Autowired 
 	private UserRepository userRepo;
 	
-	public List<Order> findAll(){
-		return repository.findAll();
+	public List<ResumoPedidoDto> findAll(){
+		List<ResumoPedidoDto> dto = mapper.mapear(repository.findAll());
+		
+		return dto;
 	}
 	public Order findById(Long id) {
 		Optional<Order> obj = repository.findById(id);
@@ -53,7 +55,7 @@ public class OrderService {
 	@Transactional
 	public Order insert(@Valid Order obj) {
 		obj.setMoment(Instant.now());
-		obj.setOrderStatus(OrderStatus.WAITING_PAYMENT);
+		obj.setOrderStatus(OrderStatus.PAGAMENTO_PENDENTE);
 		obj.setClient(userRepo.findById(obj.getClient().getId()).orElseThrow());
 		repository.save(obj);
 		for (OrderItem item : obj.getItems()) {

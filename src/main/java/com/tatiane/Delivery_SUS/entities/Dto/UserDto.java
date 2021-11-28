@@ -23,7 +23,6 @@ public class UserDto {
 	private String estado;
 
 
-
 	public String getName() {
 		return name;
 	}

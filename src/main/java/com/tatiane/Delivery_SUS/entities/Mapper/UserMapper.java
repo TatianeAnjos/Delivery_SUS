@@ -15,7 +15,7 @@ public class UserMapper {
 	public User mapear(UserDto obj) {
 		User user = new User();
 		user.setEmail(obj.getEmail());
-		user.setName(obj.getEmail());
+		user.setName(obj.getName());
 		user.setPassword(obj.getPassword());
 		user.setPhone(obj.getPhone());
 		return user;
