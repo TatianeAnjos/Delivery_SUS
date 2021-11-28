@@ -49,6 +49,7 @@ function Home() {
                 Realizar Cadastro <br />
               </Link>
             </form>
+
           </div>
           <div className="home-image">
             <ReactComponent />
