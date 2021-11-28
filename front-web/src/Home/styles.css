@@ -1,6 +1,6 @@
 .home-container {
   padding-top: 100px;
-  height: calc(100vh - 217px);
+  height: calc(30.9vh - 217px);
 }
 
 .home-container h1 {
@@ -109,6 +109,7 @@ input {
   font-size: 20px;
   letter-spacing: -0.015em;
   color: #fff;
+  font-size: medium;
 }
 
 .home-btn-cadastro {

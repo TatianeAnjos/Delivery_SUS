@@ -1,8 +1,8 @@
 var btn = document.querySelector("#btn-enviar");
+
 if (btn){
     btn.addEventListener("click",ValidarLogin);
 }
-    
 function ValidarLogin(){
     var form = document.querySelector("#form-login");
     

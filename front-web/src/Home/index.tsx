@@ -43,7 +43,7 @@ function Home() {
               </Link>
 
               <Link to="/cadastroEntregador" className="home-btn-delivery">
-                Entregador entre aqui <br />
+                Entrar como Entregador <br />
               </Link>
               <Link to="/cadastroCliente" className="home-btn-cadastro">
                 Realizar Cadastro <br />

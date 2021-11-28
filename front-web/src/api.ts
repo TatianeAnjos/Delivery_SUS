@@ -21,6 +21,7 @@ export function fetchOrders(){
 export function fetchProductsByName(name:string){
     return axios (`${API_URL}/products/buscarPorNome?name=${name}`)
 }
+
 export function verificarLogin(name:string,email:string){
     return axios (`${API_URL}/users/verificarLogin?name=${name}&${email}`)
 }
