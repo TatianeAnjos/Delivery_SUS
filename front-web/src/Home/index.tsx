@@ -16,7 +16,9 @@ function Home() {
             </h1>
             <form className="form-Login" id="form-login">
               <div className="form-group col-md-6">
-                <label htmlFor="Email">E-mail</label>
+                <label htmlFor="Email" id="#label-login">
+                  E-mail
+                </label>
                 <input
                   type="text"
                   className="form-control"
@@ -26,7 +28,9 @@ function Home() {
                 />
               </div>
               <div className="form-group col-md-6">
-                <label htmlFor="senha">Senha</label>
+                <label htmlFor="senha" id="#label-login">
+                  Senha
+                </label>
                 <input
                   type="text"
                   className="form-control"

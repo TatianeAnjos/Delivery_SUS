@@ -1,6 +1,6 @@
 .home-container {
   padding-top: 100px;
-  height: calc(30vh - 217px);
+  height: calc(30.9vh - 217px);
 }
 
 .home-container h1 {
@@ -85,7 +85,7 @@
   margin-top: 40px;
 }
 
-label {
+#label-login {
   font-weight: bold;
   font-family: "Courier New", Courier, monospace;
 }
