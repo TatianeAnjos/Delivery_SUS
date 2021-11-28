@@ -10,6 +10,19 @@
   margin-left: 42px;
 }
 
+.outros {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size:xx-large;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 41px;
+  letter-spacing: -0.015em;
+  color: var(--primary-color);
+  margin-right: 10px;
+
+}
+
 #buscar-input {
   width: 50%;
 }
