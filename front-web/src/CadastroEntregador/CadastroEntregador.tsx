@@ -1,4 +1,3 @@
-import Footer from "../Footer";
 import "./style.css";
 import { Pedido } from "./types";
 import { useEffect, useState } from 'react';
@@ -16,33 +15,40 @@ import { toast } from "react-toastify";
 
 function CadastroEntregador() {
 
-const[selecionado, setSelecionado] = useState<Pedido>();
-const[order, setOrders] = useState<Pedido[]>([]);
-useEffect(() => {
-  fetchOrders()
-  .then(response => setOrders(response.data))
-  .catch(error => console.log(error))
-}, []);
-function setSel(e:any){
-  setSelecionado(e);
-  console.log(selecionado);
-}
+  const [selecionado, setSelecionado] = useState<Pedido>();
+  const [order, setOrders] = useState<Pedido[]>([]);
+  const [ordem, setOrdem] = useState(0);
 
-const [status, setStatus] = useState('');
-const altera_status = "http://localhost:8080/orders/atualizar-status?status=4&id="+`${selecionado?.idPedido}`;
-
-function onChangeStatus(ev:any){
- setStatus(ev);
-}
-
-
-function submit(e:any){
-  e.preventDefault();
-  axios.post(altera_status)
-  .then(res=>{toast.success('Entrega Finalizada com Sucesso')})
-  .catch(res=>{toast.error('Erro ao Finalizar Entrega')})
   
-}
+  function ordemmais1 () {
+   setOrdem(ordem+1);
+  }
+
+  useEffect(() => {
+    fetchOrders()
+      .then(response => setOrders(response.data))
+      .catch(error => console.log(error))
+  }, []);
+  function setSel(e: any) {
+    setSelecionado(e);
+    console.log(selecionado);
+  }
+
+  const [status, setStatus] = useState('');
+  const altera_status = "http://localhost:8080/orders/atualizar-status?status=4&id=" + `${selecionado?.idPedido}`;
+
+  function onChangeStatus(ev: any) {
+    setStatus(ev);
+  }
+
+
+  function submit(e: any) {
+    e.preventDefault();
+    axios.post(altera_status)
+      .then(res => { toast.success('Entrega Finalizada com Sucesso') })
+      .catch(res => { toast.error('Erro ao Finalizar Entrega') })
+
+  }
   return (
     <>
       <head>
@@ -54,47 +60,39 @@ function submit(e:any){
         />
       </head>
       <h1>Entregas Pendentes</h1>
-      <table>
-        <thead>
+
+      <table className="table table-sm">
+
+        <tbody>
+          <tr>
+          <thead>
           <tr>
             <th scope="col">Ordem</th>
             <th scope="col">Numero do Pedido</th>
             <th scope="col">Nome</th>
-            <th scope="col">Valor</th>
             <th scope="col">Status</th>
+            <th scope="col">Selecionar Pedido</th>
           </tr>
         </thead>
-        </table>
-
-      <table className="table table-sm">
-        
-        <tbody>
-          <tr>
             {order.map(order => (
-<>
-<tr>
-            <th scope="row">{order.idPedido}</th>
-            <td>{order.idPedido}</td>
-            <td>{order.nomeCliente}</td>
-            <td>{order.quantidade}</td>
-            <td>{order.status}</td>
-            <td>{order.nomeItem}</td>
-
-            <button type="submit" className="btn btn-primary"
-            onClick={() => setSel(order)}
-
-            >
-            
-              Selecionar Pedido
-            </button>
-          </tr>
-</>            ))}
-            
+              <>
+                <tr onTouchMove={(e)=>{ordemmais1()}}>
+                  <th scope="row">{ordem}</th>
+                  <td>{order.idPedido}</td>
+                  <td>{order.nomeCliente}</td>
+                  <td>{order.quantidade}</td>
+                  <td>{order.status}</td>
+                  <td>{order.nomeItem}</td>
+                  <button  type="submit" className="btn btn-primary" onClick={() => setSel(order)}>
+                    Selecionar Pedido
+                  </button>
+                </tr>
+              </>
+            ))}
           </tr>
         </tbody>
       </table>
-
-      <form onSubmit={(e)=>{submit(e)}} className="form-CadCliente">
+      <form onSubmit={(e) => { submit(e) }} className="form-PedidosPendentes">
         <div className="form-row">
 
           <div className="form-group col-md-6">
@@ -119,7 +117,7 @@ function submit(e:any){
               disabled
             />
           </div>
- 
+
           <div className="form-group col-md-6">
             <label htmlFor="inputSobrenome">Endereço</label>
             <input
@@ -127,7 +125,7 @@ function submit(e:any){
               className="form-control"
               id="inputSobrenome"
               placeholder="Endereço"
-              value={`${selecionado?.logradouro}`+ ` - ${selecionado?.numero}`}
+              value={`${selecionado?.logradouro}` + ` - ${selecionado?.numero}`}
               disabled
             />
           </div>
@@ -138,11 +136,11 @@ function submit(e:any){
               className="form-control"
               id="inputSobrenome"
               placeholder="Endereço"
-              value={`${selecionado?.bairro}` +` - ${selecionado?.cidade}`}
+              value={`${selecionado?.bairro}` + ` - ${selecionado?.cidade}`}
               disabled
             />
           </div>
-          
+
           <div className="form-group col-md-6">
             <label htmlFor="inputNome">Telefone</label>
             <input
@@ -154,13 +152,13 @@ function submit(e:any){
               disabled
             />
           </div>
-          
+
         </div>
 
         <button type="submit" className="btn btn-primary">
           Iniciar entrega
         </button>
-        <button onSubmit={(e)=>{onChangeStatus(e)}} type="submit" className="btn btn-primary">
+        <button onSubmit={(e) => { onChangeStatus(e) }} type="submit" className="btn-send">
           Finalizar Pedido
         </button>
       </form>

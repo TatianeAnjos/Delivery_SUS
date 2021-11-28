@@ -1,6 +1,6 @@
 .home-container {
   padding-top: 100px;
-  height: calc(100vh - 217px);
+  height: calc(30vh - 217px);
 }
 
 .home-container h1 {
@@ -14,12 +14,18 @@
 
 .home-title {
   font-weight: bold;
-  font-size: 55px;
-  line-height: 58px;
+  font-size: 10px;
+  /* line-height: 58px; */
   letter-spacing: -0.015em;
   color: var(--dark-color);
   margin-bottom: 40px !important;
   margin-top: 59px !important;
+  margin-left: 60% !important;
+}
+
+.title {
+  position: fixed;
+  margin-left: 15% !important;
 }
 
 .home-subtitle {
@@ -33,7 +39,7 @@
 .home-btn-cadastro {
   background-color: var(--primary-color);
   border-radius: 10px;
-  height: 70px;
+  height: 40px;
   width: 500px;
   display: inline-block;
   display: flex;
@@ -46,6 +52,12 @@
   border: 10px;
 }
 
+#Email {
+  width: 212px;
+}
+#Senha {
+  width: 212px;
+}
 .home-btn-cadastro:hover {
   background-color: var(--primary-hover-color);
   transform: scale(1.01);
@@ -54,22 +66,39 @@
 .home-btn-order {
   background-color: var(--primary-color);
   border-radius: 10px;
-  height: 55px;
+  height: 40px;
   width: 235px;
   display: inline-block;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 20px;
   letter-spacing: -0.015em;
   color: #fff;
+}
+.form-Login {
+  width: 16% !important;
+  padding: 55px;
+  position: absolute;
+  margin-left: -11%;
+  margin-top: 40px;
+}
+
+label {
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+}
+
+input {
+  padding: 5px;
+  margin: 10px 10px;
 }
 
 .home-btn-delivery {
   background-color: var(--primary-color);
   border-radius: 10px;
-  height: 55px;
+  height: 40px;
   width: 235px;
   margin-top: 10px;
   display: inline-block;
@@ -77,15 +106,16 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 21px;
+  font-size: 20px;
   letter-spacing: -0.015em;
   color: #fff;
+  font-size: medium;
 }
 
 .home-btn-cadastro {
   background-color: var(--primary-color);
   border-radius: 10px;
-  height: 55px;
+  height: 40px;
   width: 237px;
   margin-top: 10px;
   display: inline-block;
@@ -93,7 +123,7 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 21px;
+  font-size: 20px;
   letter-spacing: -0.015em;
   color: #fff;
 }
@@ -108,7 +138,9 @@ a {
 }
 
 .home-image svg {
-  width: 100% !important;
+  width: 73% !important;
+  margin-left: 39%;
+  margin-top: 7%;
 }
 
 @media only screen and (max-width: 768px) {

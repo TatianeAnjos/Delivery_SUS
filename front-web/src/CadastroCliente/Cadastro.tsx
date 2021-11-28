@@ -1,10 +1,9 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+import { useState } from 'react';
+import { toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'; 
 
 import "./style.css";
-import { User } from '../Orders/types';
 import axios from "axios";
 
 <link
@@ -13,10 +12,6 @@ import axios from "axios";
   integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
   crossOrigin="anonymous"
 />;
-
-type Props = {
-  users:User;
-}
 
 function Cadastro() {
   const url = "http://localhost:8080/users"
