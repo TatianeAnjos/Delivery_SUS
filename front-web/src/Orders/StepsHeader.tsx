@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Product } from './types';
 import { fetchProducts, fetchProductsByName } from '../api';
 import React from 'react';
+import ProductCardPorNome from "./ProductCardPorNome";
 import ProductCard from "./ProductCard";
 
 
