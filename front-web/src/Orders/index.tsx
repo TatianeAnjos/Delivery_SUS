@@ -5,6 +5,7 @@ import Footer from "../Footer";
 import { useEffect, useState } from 'react';
 import {Product} from './types';
 import {fetchProducts} from '../api';
+import React from 'react';
 
 function Orders() {
   const[products, setProducts] = useState<Product[]>([]);

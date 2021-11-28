@@ -34,3 +34,20 @@ export type User = {
 	 bairro: string;
 	 estado: string
 };
+
+export type item = {
+    nomeItem: string;
+    quantidade:number;
+}
+
+export type order = {
+    idPedido: number;
+    status : string;
+    nomeCliente: string;
+    telefoneCliente: string;
+    logradouro : string;
+    numero : string;
+    bairro : string;
+    cidade :string;           
+}
+

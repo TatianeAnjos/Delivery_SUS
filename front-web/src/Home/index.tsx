@@ -17,12 +17,14 @@ function Home() {
             <Link to="/orders"className="home-btn-order">
               Entrar <br />
             </Link>
-            <Link to="/cadastroEntregador"className="home-btn-delivery">
-              Entregador entre aqui <br />
-            </Link>
             <Link to="/cadastroCliente"className="home-btn-cadastro">
-              Realizar Cadastro <br />
+              Realizar Cadastro 
+              <br />
             </Link>
+            <Link to="/cadastroEntregador"className="home-btn-delivery">
+              Area do Entregador<br />
+            </Link>
+
           </div>
           <div className="home-image">
               <ReactComponent />

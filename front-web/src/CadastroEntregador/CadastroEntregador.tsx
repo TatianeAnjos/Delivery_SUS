@@ -1,5 +1,11 @@
 import Footer from "../Footer";
 import "./style.css";
+import { Pedido } from "./types";
+import { useEffect, useState } from 'react';
+import { fetchOrders } from "../api";
+import axios from "axios";
+import { toast } from "react-toastify";
+
 <link
   rel="stylesheet"
   href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -7,7 +13,36 @@ import "./style.css";
   crossOrigin="anonymous"
 />;
 
+
 function CadastroEntregador() {
+
+const[selecionado, setSelecionado] = useState<Pedido>();
+const[order, setOrders] = useState<Pedido[]>([]);
+useEffect(() => {
+  fetchOrders()
+  .then(response => setOrders(response.data))
+  .catch(error => console.log(error))
+}, []);
+function setSel(e:any){
+  setSelecionado(e);
+  console.log(selecionado);
+}
+
+const [status, setStatus] = useState('');
+const altera_status = "http://localhost:8080/orders/atualizar-status?status=4&id="+`${selecionado?.idPedido}`;
+
+function onChangeStatus(ev:any){
+ setStatus(ev);
+}
+
+
+function submit(e:any){
+  e.preventDefault();
+  axios.post(altera_status)
+  .then(res=>{toast.success('Entrega Finalizada com Sucesso')})
+  .catch(res=>{toast.error('Erro ao Finalizar Entrega')})
+  
+}
   return (
     <>
       <head>
@@ -19,8 +54,7 @@ function CadastroEntregador() {
         />
       </head>
       <h1>Entregas Pendentes</h1>
-
-      <table className="table table-sm">
+      <table>
         <thead>
           <tr>
             <th scope="col">Ordem</th>
@@ -30,42 +64,39 @@ function CadastroEntregador() {
             <th scope="col">Status</th>
           </tr>
         </thead>
+        </table>
+
+      <table className="table table-sm">
+        
         <tbody>
           <tr>
-            <th scope="row">1</th>
-            <td>124578</td>
-            <td>Carlos</td>
-            <td>R$ 10,25</td>
-            <td>Em andamento </td>
-            <button type="submit" className="btn btn-primary">
+            {order.map(order => (
+<>
+<tr>
+            <th scope="row">{order.idPedido}</th>
+            <td>{order.idPedido}</td>
+            <td>{order.nomeCliente}</td>
+            <td>{order.quantidade}</td>
+            <td>{order.status}</td>
+            <td>{order.nomeItem}</td>
+
+            <button type="submit" className="btn btn-primary"
+            onClick={() => setSel(order)}
+
+            >
+            
               Selecionar Pedido
             </button>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>235689</td>
-            <td>Maria</td>
-            <td>R$ 15,00</td>
-            <td>Pedente</td>
-            <button type="submit" className="btn btn-primary">
-              Selecionar Pedido
-            </button>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>748596</td>
-            <td>José</td>
-            <td>R$ 25,30</td>
-            <td>Pendente</td>
-            <button type="submit" className="btn btn-primary">
-              Selecionar Pedido
-            </button>
+</>            ))}
+            
           </tr>
         </tbody>
       </table>
 
-      <form className="form-CadCliente">
+      <form onSubmit={(e)=>{submit(e)}} className="form-CadCliente">
         <div className="form-row">
+
           <div className="form-group col-md-6">
             <label htmlFor="Pedido">Pedido</label>
             <input
@@ -73,10 +104,22 @@ function CadastroEntregador() {
               className="form-control"
               id="Pedido"
               placeholder="Pedido"
-              value="124578"
+              value={selecionado?.idPedido}
               disabled
             />
           </div>
+          <div className="form-group col-md-6">
+            <label htmlFor="inputNome">Nome Cliente</label>
+            <input
+              type="text"
+              className="form-control"
+              id="inputNome"
+              placeholder="Nome Cliente"
+              value={selecionado?.nomeCliente}
+              disabled
+            />
+          </div>
+ 
           <div className="form-group col-md-6">
             <label htmlFor="inputSobrenome">Endereço</label>
             <input
@@ -84,26 +127,40 @@ function CadastroEntregador() {
               className="form-control"
               id="inputSobrenome"
               placeholder="Endereço"
-              value="Brigadeiro Faria Lima, 1744"
+              value={`${selecionado?.logradouro}`+ ` - ${selecionado?.numero}`}
               disabled
             />
           </div>
           <div className="form-group col-md-6">
-            <label htmlFor="inputNome">Valor</label>
+            <label htmlFor="inputSobrenome">Bairro</label>
+            <input
+              type="text"
+              className="form-control"
+              id="inputSobrenome"
+              placeholder="Endereço"
+              value={`${selecionado?.bairro}` +` - ${selecionado?.cidade}`}
+              disabled
+            />
+          </div>
+          
+          <div className="form-group col-md-6">
+            <label htmlFor="inputNome">Telefone</label>
             <input
               type="text"
               className="form-control"
               id="inputNome"
-              placeholder="Valor"
-              value="R$ 10,25"
+              placeholder="Telefone"
+              value={selecionado?.telefoneCliente}
               disabled
             />
           </div>
+          
         </div>
+
         <button type="submit" className="btn btn-primary">
           Iniciar entrega
         </button>
-        <button type="submit" className="btn btn-primary">
+        <button onSubmit={(e)=>{onChangeStatus(e)}} type="submit" className="btn btn-primary">
           Finalizar Pedido
         </button>
       </form>
