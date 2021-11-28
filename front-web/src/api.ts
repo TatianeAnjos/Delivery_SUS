@@ -17,3 +17,7 @@ export function saveUser(user: User){
 export function fetchOrders(){
     return axios (`${API_URL}/orders/buscar-por-status?status=2`)
 }
+
+export function fetchProductsByName(name:string){
+    return axios (`${API_URL}/products/buscarPorNome?name=${name}`)
+}

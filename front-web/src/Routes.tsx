@@ -22,6 +22,7 @@ function Routes() {
         <Route path="/">
           <Home />
         </Route>
+      
       </Switch>
     </BrowserRouter>
   );
