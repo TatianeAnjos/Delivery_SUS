@@ -15,13 +15,13 @@ export function saveUser(user: User){
 }
 
 export function fetchOrders(){
-    return axios (`${API_URL}/orders/buscar-por-status?status=2`)
+    return axios.get(`${API_URL}/orders/buscar-por-status?status=2`)
 }
 
 export function fetchProductsByName(name:string){
-    return axios (`${API_URL}/products/buscarPorNome?name=${name}`)
+    return axios.get(`${API_URL}/products/buscarPorNome?name=${name}`)
 }
 
 export function verificarLogin(name:string,email:string){
-    return axios (`${API_URL}/users/verificarLogin?name=${name}&${email}`)
+    return axios.get(`${API_URL}/users/verificarLogin?name=${name}&${email}`)
 }
