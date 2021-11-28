@@ -6,6 +6,26 @@
   margin: 0;
 }
 
+.buscar {
+  margin-left: 42px;
+}
+
+#buscar-input {
+  width: 50%;
+}
+
+#btn-buscar {
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  height: 28px;
+  width: 117px;
+  margin-top: 4px;
+  font-weight: bold;
+  font-size: 17px;
+  letter-spacing: -0.015em;
+  color: #fff;
+}
+
 .orders-steps-container {
   display: flex;
   justify-content: center;
