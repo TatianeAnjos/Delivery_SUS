@@ -14,18 +14,19 @@ h1 {
   margin-left: 122px;
 }
 table {
-  width: 42% !important;
+  width: 50% !important;
   margin-left: 05%;
-  margin-top: 05%;
+  margin-top: 10%;
   box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
   height: 50%;
+  padding-top: -50px;
 }
 
 .form-PedidosPendentes {
   box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
   padding: 13px;
-  width: 45% !important;
-  margin-left: 49%;
+  width: 35% !important;
+  margin-left: 60%;
   margin-top: -167px;
   border-radius: 5px;
 }

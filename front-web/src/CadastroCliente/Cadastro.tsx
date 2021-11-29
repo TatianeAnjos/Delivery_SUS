@@ -1,4 +1,13 @@
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'; 
+
 import "./style.css";
+import { User } from '../Orders/types';
+
+import axios from "axios";
+
 <link
   rel="stylesheet"
   href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -6,7 +15,68 @@ import "./style.css";
   crossOrigin="anonymous"
 />;
 
+type Props = {
+  users:User;
+}
+
 function Cadastro() {
+  const url = "http://localhost:8080/users"
+
+const [name, setName] = useState('');
+function onChangeName(ev:string){
+  setName(ev);
+}
+ const [email,setEmail] = useState('');
+ function onChangeEmail(ev:string){
+  setEmail(ev);
+}
+ const [phone,setPhone] = useState('');
+ function onChangePhone(ev:string){
+  setPhone(ev);
+}
+ const [password,setPassword] = useState('');
+ function onChangePassword(ev:string){
+  setPassword(ev);
+}
+ const [logradouro, setLogradouro] = useState('');
+ function onChangeLogradouro(ev:string){
+  setLogradouro(ev);
+}
+ const [numero, setNumero] = useState('');
+ function onChangeNumero(ev:string){
+  setNumero(ev);
+}
+ const [cidade, setCidade] = useState('');
+ function onChangeCidade(ev:string){
+  setCidade(ev);
+}
+ const [bairro, setBairro] = useState('');
+ function onChangeBairro(ev:string){
+  setBairro(ev);
+}
+ const [estado, setEstado] = useState('');
+ function onChangeEstado(ev:string){
+  setEstado(ev);
+}
+
+
+function submit(e:any){
+  e.preventDefault();
+  axios.post(url,{
+    name,
+    email,
+    phone,
+    password,
+    logradouro,
+    numero, 
+    cidade, 
+    bairro, 
+    estado
+  }).then(res=>{toast.success('Cadastro realizado com sucesso')})
+  .catch(res=>{toast.error('Erro ao realizar o cadastro')})
+  
+}
+
   return (
     <>
       <head>
@@ -18,15 +88,17 @@ function Cadastro() {
         />
       </head>
       <h1>Novo Usuário</h1>
-      <form className="form-CadCliente">
+      <form onSubmit={(e) => submit(e)} className="form-CadCliente">
         <div className="form-row">
           <div className="form-group col-md-6">
             <label htmlFor="inputNome">Nome</label>
             <input
               type="text"
               className="form-control"
-              id="inputNome"
               placeholder="Nome"
+              id="inputNome" 
+              onChange={(e)=>onChangeName(e.target.value)}
+
             />
           </div>
           <div className="form-group col-md-4">
@@ -36,15 +108,18 @@ function Cadastro() {
               className="form-control"
               id="inputSobrenome"
               placeholder="Sobrenome"
+
             />
           </div>
           <div className="form-group col-md-2">
-            <label htmlFor="inputNome">CPF</label>
+            <label htmlFor="inputTelefone">Telefone</label>
             <input
               type="text"
               className="form-control"
-              id="inputNome"
-              placeholder="CPF"
+              id="inputTelefone"
+              placeholder="Telefone"
+              onChange={(e)=>onChangePhone(e.target.value)}
+
             />
           </div>
         </div>
@@ -57,6 +132,8 @@ function Cadastro() {
               className="form-control"
               id="endereco"
               placeholder="Rua, Avenida, Travessa..."
+              onChange={(e)=>onChangeLogradouro(e.target.value)}
+
             />
           </div>
           <div className="form-group col-md-2">
@@ -66,6 +143,8 @@ function Cadastro() {
               className="form-control"
               id="numero"
               placeholder="N°"
+              onChange={(e)=>onChangeNumero(e.target.value)}
+
             />
           </div>
           <div className="form-group col-md-">
@@ -82,18 +161,30 @@ function Cadastro() {
         <div className="form-row">
           <div className="form-group col-md-6">
             <label htmlFor="inputCity">Cidade</label>
-            <input type="text" className="form-control" id="inputCity" />
+            <input type="text"  placeholder="Cidade" className="form-control" id="inputCity"  onChange={(e)=>onChangeCidade(e.target.value)}
+ />
           </div>
           <div className="form-group col-md-4">
             <label htmlFor="inputEstado">Estado</label>
-            <select id="inputEstado" className="form-control">
+            <select id="inputEstado" className="form-control" onChange={(e)=>onChangeEstado(e.target.value)}>
               <option selected>Escolher...</option>
-              <option>...</option>
+              <option>São Paulo</option>
+              <option>Rio de Janeiro</option>
+              <option>Paraná</option>
+              <option>Mato Grosso do Sul</option>
+              <option>Maranhão</option>
+              <option>Bahia</option>
+              <option>Amazonas</option>
             </select>
           </div>
           <div className="form-group col-md-2">
-            <label htmlFor="inputCEP">CEP</label>
-            <input type="text" className="form-control" id="inputCEP" />
+            <label htmlFor="inputBairro">Bairro</label>
+            <input  type="text" 
+                    className="form-control" 
+                    id="inputBairro"  
+                    onChange={(e)=>onChangeBairro(e.target.value)} 
+            />
+            
           </div>
         </div>
         <div className="form-row">
@@ -104,6 +195,9 @@ function Cadastro() {
               className="form-control"
               id="inputEmail4"
               placeholder="Email"
+              onChange={(e)=>onChangeEmail(e.target.value)}
+
+
             />
           </div>
           <div className="form-group col-md-6">
@@ -113,6 +207,8 @@ function Cadastro() {
               className="form-control"
               id="inputPassword4"
               placeholder="Senha."
+              onChange={(e)=>onChangePassword(e.target.value)}
+
             />
           </div>
         </div>
@@ -129,7 +225,8 @@ function Cadastro() {
             </label> */}
           </div>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary"
+        >
           Cadastrar
         </button>
       </form>
