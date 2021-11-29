@@ -1,3 +1,5 @@
+var table =document.querySelectorAll(".table table-sm")
+
 function ValidarLogin(){
     var form = document.querySelector("#form-login")
 

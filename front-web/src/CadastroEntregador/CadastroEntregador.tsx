@@ -1,10 +1,16 @@
 import "./style.css";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 <link
   rel="stylesheet"
   href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
   integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
   crossOrigin="anonymous"
 />;
+
+const position = {
+  lat: 51.505,
+  lng: -0.09,
+};
 
 function CadastroEntregador() {
   return (
