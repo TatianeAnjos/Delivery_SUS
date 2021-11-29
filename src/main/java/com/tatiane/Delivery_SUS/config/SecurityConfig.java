@@ -1,5 +1,8 @@
 package com.tatiane.Delivery_SUS.config;
 
+import static springfox.documentation.builders.PathSelectors.regex;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+
 //import com.tatianeanjos.security.JWTUtil;
 
 
@@ -35,11 +39,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //	@Autowired
 //	private JWTUtil jwtUtil;
 
-	private static final String[] PUBLIC_MATCHERS = { "/h2-console/**","/orders/**"};
+	private static final String[] PUBLIC_MATCHERS = {"/localhost:8080/**", "/h2-console/**","/orders/**","/swagger-ui/**"};
 
-	private static final String[] PUBLIC_MATCHERS_GET = { "/orders/**","/products/**", "/categories/**", "/entregadores/**"};
+	private static final String[] PUBLIC_MATCHERS_GET = {"/localhost:8080/**","/swagger-ui/**", "/orders/**","/products/**", "/categories/**", "/entregadores/**"};
 
-	private static final String[] PUBLIC_MATCHERS_POST = { "/users/**", "/entregadores/**"};
+	private static final String[] PUBLIC_MATCHERS_POST = {"/localhost:8080/**","/swagger-ui/**", "/users/**", "/entregadores/**"};
 
 	
 	@Override
@@ -58,7 +62,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(PUBLIC_MATCHERS).permitAll()
 			.antMatchers(PUBLIC_MATCHERS_GET).permitAll()
 			.antMatchers(PUBLIC_MATCHERS_POST).permitAll()
+			.antMatchers(
+		            "/v2/api-docs", 
+		            "/swagger-resources/**",  
+		            "/swagger-ui.html", 
+		            "/webjars/**" ,
+	             "/users.*",
+	              "/products.*",
+	               "/orders.*",
+		             /*Probably not needed*/ "/swagger.json").permitAll()
 			.anyRequest().authenticated();
+		
 //		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
 //		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 //		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -80,4 +94,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+
 }

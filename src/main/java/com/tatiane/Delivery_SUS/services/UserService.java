@@ -8,12 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.tatiane.Delivery_SUS.entities.Endereco;
+import com.tatiane.Delivery_SUS.entities.Entregador;
 import com.tatiane.Delivery_SUS.entities.User;
 import com.tatiane.Delivery_SUS.entities.Dto.UserDto;
 import com.tatiane.Delivery_SUS.entities.Dto.UserResumoDto;
 import com.tatiane.Delivery_SUS.entities.Dto.VerificarLoginDto;
 import com.tatiane.Delivery_SUS.entities.Mapper.EnderecoMapper;
 import com.tatiane.Delivery_SUS.entities.Mapper.UserMapper;
+import com.tatiane.Delivery_SUS.repositories.EntregadorRepository;
 import com.tatiane.Delivery_SUS.repositories.UserRepository;
 
 @Service
@@ -21,6 +23,9 @@ public class UserService {
 	
 	@Autowired
 	private UserRepository repository;
+	
+	@Autowired
+	private EntregadorRepository eRepo;
 	
 	@Autowired
 	private EnderecoService enderecoService;
@@ -47,10 +52,19 @@ public class UserService {
 	public VerificarLoginDto verificarLogin(String email, String senha) {
 		VerificarLoginDto dto = new VerificarLoginDto();
 		User user = repository.findByLogin(email);
-		if(user.getEmail().equals(email) && user.getPassword().equals(senha)) {
+		Entregador e = eRepo.findByLoginE(email);
+		if(user!=null) {
+			if(user.getEmail().equals(email) && user.getPassword().equals(senha)) {
+				dto.setIsLoginValido(true);
+				dto.setIdUser(user.getId());
+				return dto;
+			}
+		}else if(e != null) {
+			if(e.getEmail().equals(email) && e.getPassword().equals(senha)) {
 			dto.setIsLoginValido(true);
+			dto.setIdUser(e.getId());
 			return dto;
-		}
+		}}
 		dto.setIsLoginValido(false);
 		return dto;
 	}

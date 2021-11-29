@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tatiane.Delivery_SUS.entities.Product;
 import com.tatiane.Delivery_SUS.services.ProductService;
 
+import io.swagger.annotations.ApiOperation;
+
 
 @RestController
 @RequestMapping(value ="/products")
@@ -26,18 +28,20 @@ public class ProductResource {
 	private ProductService service;
 	
 	@GetMapping
+	@ApiOperation(value= "Retorna todos os Produtos")
 	public ResponseEntity<List<Product>> findAll(){
 		log.info("|01| PRODUTOS: BUSCAR TODOS");
 		List<Product> listProducts = service.findAll();
 		return ResponseEntity.ok().body(listProducts);
 	}
+	@ApiOperation(value= "Retorna um produto por ID")
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Product>findById(@PathVariable Long id){
 		log.info("|01| PRODUTOS: BUSCAR POR ID {} ", id);
 		Product obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
-
+	@ApiOperation(value= "Retorna os Produtos por nome")
 	@RequestMapping(value="/buscarPorNome",method=RequestMethod.GET)
 	public ResponseEntity<List<Product>>findByName(@RequestParam String name){
 		log.info("|01| PRODUTOS: BUSCAR PRODUTO POR NOME {} ", name);

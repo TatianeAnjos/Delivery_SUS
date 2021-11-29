@@ -3,6 +3,7 @@ package com.tatiane.Delivery_SUS.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.tatiane.Delivery_SUS.entities.Entregador;
 import com.tatiane.Delivery_SUS.entities.User;
 
 

@@ -19,6 +19,8 @@ import com.tatiane.Delivery_SUS.entities.Entregador;
 import com.tatiane.Delivery_SUS.entities.Dto.EntregadorDto;
 import com.tatiane.Delivery_SUS.services.EntregadorService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value ="/entregadores")
 public class EntregadorResource {
@@ -27,12 +29,15 @@ public class EntregadorResource {
 	@Autowired
 	private EntregadorService service;
 	
+	@ApiOperation(value= "Retorna os Entregadores")
 	@GetMapping
 	public ResponseEntity<List<Entregador>> findAll(){
 		log.info("|01| ENTREGADOR: BUSCAR TODOS");
 		List<Entregador> lsEntregadores = service.findAll();
 		return ResponseEntity.ok().body(lsEntregadores);
 	}
+	
+	@ApiOperation(value= "Retorna os Entregadores por ID")
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Entregador>findById(@PathVariable Long id){
 		log.info("|01| ENTREGADOR: BUSCAR POR ID {} ", id);
@@ -40,6 +45,7 @@ public class EntregadorResource {
 		return ResponseEntity.ok().body(obj);
 	}
 
+	@ApiOperation(value= "Cria um entregador")
 	@PostMapping
 	public ResponseEntity<Entregador> insert(@RequestBody EntregadorDto obj){
 		log.info("|01| ENTREGADOR: CRIANDO ENTREGADOR {} ", obj);
